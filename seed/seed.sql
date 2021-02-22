@@ -1,4 +1,4 @@
---Insert some test expenses
-INSERT INTO expenses (id, name, value, category_id, "group", date, user_id, user_name) VALUES (1, 'Test expense 1', 120, 1, 'Test group', '2020-11-07 20:19:30.000000', 'localhost/testuser', 'Test user');
-INSERT INTO expenses (id, name, value, category_id, "group", date, user_id, user_name) VALUES (2, 'Test expense 2', 240, 2, 'Test group', '2020-11-07 20:19:30.000000', 'localhost/testuser2', 'Test user 2');
-INSERT INTO expenses (id, name, value, category_id, "group", date, user_id, user_name) VALUES (3, 'Test expense 3', 40, 1, 'Test group', '2020-11-07 20:19:30.000000', 'localhost/testuser', 'Test user');
+--Insert some test items
+INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (1, 'Test item 1', 'This is test item 1', 1, 1, FALSE);
+INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (2, 'Test item 2', 'This is test item 2', 1, 1, FALSE);
+INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (3, 'Test item 3', 'This is test item 3', 1, 1, FALSE);

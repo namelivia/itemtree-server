@@ -1,1 +1,1 @@
-TRUNCATE expenses CASCADE;
+TRUNCATE items CASCADE;
