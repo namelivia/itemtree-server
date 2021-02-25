@@ -103,10 +103,30 @@ class TestApp:
         response = client.post("/items", json={"payload": "Invalid"})
         assert response.status_code == 422
 
-    def test_get_all_items(self, client, database_test_session):
+    def test_get_all_items_with_no_parent(self, client, database_test_session):
+        self._insert_test_item(database_test_session, {"parent_id": None})
         self._insert_test_item(database_test_session)
-        self._insert_test_item(database_test_session)
+
         response = client.get("/items")
+        assert response.status_code == 200
+        assert response.json() == [
+            {
+                "id": 1,
+                "name": "Test item",
+                "description": "This is a test item",
+                "parent_id": None,
+                "destination_id": 1,
+                "is_container": False,
+            }
+        ]
+
+    def test_get_all_items_for_parent(self, client, database_test_session):
+        self._insert_test_item(database_test_session)
+        self._insert_test_item(database_test_session)
+        self._insert_test_item(database_test_session, {"parent_id": 2})
+
+        # Get items for the parent_id = 1
+        response = client.get("/items?parent=1")
         assert response.status_code == 200
         assert response.json() == [
             {

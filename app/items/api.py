@@ -10,14 +10,8 @@ router = APIRouter(prefix="/items", dependencies=[Depends(get_db)])
 
 
 @router.get("", response_model=List[schemas.Item])
-def items(
-    db: Session = Depends(get_db),
-    skip: int = 0,
-    limit: int = 10,
-    x_pomerium_jwt_assertion: Optional[str] = Header(None),
-):
-    items = crud.get_items(db, x_pomerium_jwt_assertion, skip, limit)
-    return items
+def items(db: Session = Depends(get_db), parent: Optional[int] = None):
+    return crud.get_items_for_parent_id(db, parent)
 
 
 def _get_item(db: Session, item_id: int):

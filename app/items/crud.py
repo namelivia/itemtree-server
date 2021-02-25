@@ -14,9 +14,8 @@ def get_item(db: Session, item_id: int):
 
 
 # TODO: skip and limit
-# TODO: passing around the whole assertion is something I can avoid
-def get_items(db: Session, x_pomerium_jwt_assertion, skip, limit):
-    return db.query(models.Item).offset(skip).limit(limit).all()
+def get_items_for_parent_id(db: Session, parent_id: int):
+    return db.query(models.Item).filter(models.Item.parent_id == parent_id).all()
 
 
 def create_item(db: Session, item: schemas.ItemCreate, x_pomerium_jwt_assertion):
