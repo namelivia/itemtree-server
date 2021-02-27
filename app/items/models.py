@@ -9,4 +9,4 @@ class Item(Base):
     description = Column(String)
     parent_id = Column(Integer)
     destination_id = Column(Integer)
-    is_container = Column(Boolean)
+    is_container = Column(Boolean, nullable=False)

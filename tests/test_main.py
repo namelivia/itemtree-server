@@ -54,6 +54,32 @@ class TestApp:
         }
         m_send_notification.assert_called_with("The item New item has been created")
 
+    @patch("app.notifications.notifications.Notifications.send")
+    def test_create_item_non_optional_fields(
+        self,
+        m_send_notification,
+        client,
+        database_test_session,
+    ):
+        response = client.post(
+            "/items",
+            json={
+                "name": "New item",
+                "description": "This is a new item",
+                "is_container": False,
+            },
+        )
+        assert response.status_code == 201
+        assert response.json() == {
+            "id": 1,
+            "name": "New item",
+            "description": "This is a new item",
+            "parent_id": None,
+            "destination_id": None,
+            "is_container": False,
+        }
+        m_send_notification.assert_called_with("The item New item has been created")
+
     def test_get_non_existing_item(self, client):
         response = client.get("/items/99")
         assert response.status_code == 404
