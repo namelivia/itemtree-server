@@ -8,6 +8,7 @@ class ItemBase(BaseModel):
     parent_id: Optional[int] = Field(title="Parent id for the item")
     destination_id: Optional[int] = Field(title="Parent id for the item")
     is_container: bool = Field(title="Indicates if the item is container or not")
+    image: Optional[str] = Field(title="Image url for the item")
 
 
 class ItemCreate(ItemBase):

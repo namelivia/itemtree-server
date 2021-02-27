@@ -19,6 +19,7 @@ class TestApp:
             "parent_id": 1,
             "destination_id": 1,
             "is_container": False,
+            "image": "test_image_url",
         }
         data.update(item)
         db_item = Item(**data)
@@ -51,6 +52,7 @@ class TestApp:
             "parent_id": 1,
             "destination_id": 1,
             "is_container": False,
+            "image": None,
         }
         m_send_notification.assert_called_with("The item New item has been created")
 
@@ -77,6 +79,7 @@ class TestApp:
             "parent_id": None,
             "destination_id": None,
             "is_container": False,
+            "image": None,
         }
         m_send_notification.assert_called_with("The item New item has been created")
 
@@ -123,6 +126,7 @@ class TestApp:
             "parent_id": 1,
             "destination_id": 1,
             "is_container": False,
+            "image": "test_image_url",
         }
 
     def test_create_item_invalid(self, client):
@@ -143,6 +147,7 @@ class TestApp:
                 "parent_id": None,
                 "destination_id": 1,
                 "is_container": False,
+                "image": "test_image_url",
             }
         ]
 
@@ -162,6 +167,7 @@ class TestApp:
                 "parent_id": 1,
                 "destination_id": 1,
                 "is_container": False,
+                "image": "test_image_url",
             },
             {
                 "id": 2,
@@ -170,6 +176,7 @@ class TestApp:
                 "parent_id": 1,
                 "destination_id": 1,
                 "is_container": False,
+                "image": "test_image_url",
             },
         ]
 
@@ -194,6 +201,7 @@ class TestApp:
                 "parent_id": 1,
                 "destination_id": 1,
                 "is_container": False,
+                "image": "test_image_url",
             },
         )
         assert response.status_code == 200
@@ -204,4 +212,5 @@ class TestApp:
             "parent_id": 1,
             "destination_id": 1,
             "is_container": False,
+            "image": "test_image_url",
         }

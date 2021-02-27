@@ -10,3 +10,4 @@ class Item(Base):
     parent_id = Column(Integer)
     destination_id = Column(Integer)
     is_container = Column(Boolean, nullable=False)
+    image = Column(String)
