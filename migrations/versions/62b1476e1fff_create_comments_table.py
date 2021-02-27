@@ -21,7 +21,7 @@ def upgrade():
     op.create_table(
         "comments",
         sa.Column("id", sa.Integer(), nullable=False),
-        sa.Column("item_id", sa.String(), nullable=False),
+        sa.Column("item_id", sa.Integer(), nullable=False),
         sa.Column("user_id", sa.String(), nullable=False),
         sa.Column("content", sa.String(), nullable=False),
         sa.PrimaryKeyConstraint("id"),

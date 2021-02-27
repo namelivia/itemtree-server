@@ -1,1 +1,2 @@
 TRUNCATE items CASCADE;
+TRUNCATE comments CASCADE;
