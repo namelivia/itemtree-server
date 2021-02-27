@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.items.api import router as items
+from app.images.api import router as images
 from app.users.api import router as users
 import logging
 import sys
@@ -23,6 +24,7 @@ app.add_middleware(
     app.include_router(router)
     for router in [
         items,
+        images,
         users,
     ]
 ]
