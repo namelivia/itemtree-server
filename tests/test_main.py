@@ -6,6 +6,7 @@ from .test_base import (
     database_test_session,
 )
 from app.items.models import Item
+from app.comments.models import Comment
 from app.items.schemas import Item as ItemSchema
 from freezegun import freeze_time
 
@@ -26,6 +27,18 @@ class TestApp:
         session.add(db_item)
         session.commit()
         return db_item
+
+    def _insert_test_comment(self, session, comment: dict = {}):
+        data = {
+            "content": "Test comment",
+            "item_id": 1,
+            "user_id": "user",
+        }
+        data.update(comment)
+        db_comment = Comment(**data)
+        session.add(db_comment)
+        session.commit()
+        return db_comment
 
     @patch("app.notifications.notifications.Notifications.send")
     def test_create_item(
@@ -214,3 +227,52 @@ class TestApp:
             "is_container": False,
             "image": "test_image_url",
         }
+
+    @patch("app.notifications.notifications.Notifications.send")
+    @patch("app.users.api.UserInfo.get_current")
+    def test_create_comment(
+        self,
+        m_get_user_info,
+        m_send_notification,
+        client,
+        database_test_session,
+    ):
+        m_get_user_info.return_value = {"sub": "user"}
+        response = client.post(
+            "/comments",
+            json={
+                "content": "New comment",
+                "item_id": 1,
+            },
+        )
+        assert response.status_code == 201
+        assert response.json() == {
+            "id": 1,
+            "content": "New comment",
+            "user_id": "user",
+            "item_id": 1,
+        }
+        m_send_notification.assert_called_with("A comment has been created")
+
+    def test_get_all_comments_for_item(self, client, database_test_session):
+        self._insert_test_comment(database_test_session)
+        self._insert_test_comment(database_test_session)
+        self._insert_test_comment(database_test_session, {"item_id": 2})
+
+        # Get items for the item_id = 1
+        response = client.get("/comments?item=1")
+        assert response.status_code == 200
+        assert response.json() == [
+            {
+                "id": 1,
+                "content": "Test comment",
+                "item_id": 1,
+                "user_id": "user",
+            },
+            {
+                "id": 2,
+                "content": "Test comment",
+                "item_id": 1,
+                "user_id": "user",
+            },
+        ]

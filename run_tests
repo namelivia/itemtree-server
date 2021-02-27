@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec itemtree-server-app pipenv run pytest
+docker exec -it itemtree-server-app pipenv run pytest
