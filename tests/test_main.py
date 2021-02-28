@@ -33,6 +33,7 @@ class TestApp:
             "content": "Test comment",
             "item_id": 1,
             "user_id": "user",
+            "user_name": "Test User",
         }
         data.update(comment)
         db_comment = Comment(**data)
@@ -237,7 +238,7 @@ class TestApp:
         client,
         database_test_session,
     ):
-        m_get_user_info.return_value = {"sub": "user"}
+        m_get_user_info.return_value = {"sub": "user", "name": "Test User"}
         response = client.post(
             "/comments",
             json={
@@ -250,6 +251,7 @@ class TestApp:
             "id": 1,
             "content": "New comment",
             "user_id": "user",
+            "user_name": "Test User",
             "item_id": 1,
         }
         m_send_notification.assert_called_with("A comment has been created")
@@ -268,11 +270,13 @@ class TestApp:
                 "content": "Test comment",
                 "item_id": 1,
                 "user_id": "user",
+                "user_name": "Test User",
             },
             {
                 "id": 2,
                 "content": "Test comment",
                 "item_id": 1,
                 "user_id": "user",
+                "user_name": "Test User",
             },
         ]

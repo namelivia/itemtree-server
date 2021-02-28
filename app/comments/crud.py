@@ -15,7 +15,9 @@ def create_comment(
     db: Session, comment: schemas.CommentCreate, x_pomerium_jwt_assertion
 ):
     db_comment = models.Comment(**comment.dict())
-    db_comment.user_id = UserInfo.get_current(x_pomerium_jwt_assertion)["sub"]
+    user_info = UserInfo.get_current(x_pomerium_jwt_assertion)
+    db_comment.user_id = user_info["sub"]
+    db_comment.user_name = user_info["name"]
     db.add(db_comment)
     db.commit()
     db.refresh(db_comment)
