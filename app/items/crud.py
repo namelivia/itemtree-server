@@ -18,6 +18,10 @@ def get_items_for_parent_id(db: Session, parent_id: int):
     return db.query(models.Item).filter(models.Item.parent_id == parent_id).all()
 
 
+def get_items(db: Session):
+    return db.query(models.Item).all()
+
+
 def create_item(db: Session, item: schemas.ItemCreate, x_pomerium_jwt_assertion):
     db_item = models.Item(**item.dict())
     db.add(db_item)
