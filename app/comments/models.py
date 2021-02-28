@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, func
 from app.database import Base
 
 
@@ -9,3 +9,4 @@ class Comment(Base):
     user_id = Column(String, nullable=False)
     user_name = Column(String)
     content = Column(String, nullable=False)
+    date = Column(DateTime, nullable=False, server_default=func.now())

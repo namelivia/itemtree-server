@@ -1,4 +1,5 @@
 import pytest
+import datetime
 from mock import patch, Mock, call
 from .test_base import (
     client,
@@ -34,6 +35,7 @@ class TestApp:
             "item_id": 1,
             "user_id": "user",
             "user_name": "Test User",
+            "date": datetime.datetime.now(),
         }
         data.update(comment)
         db_comment = Comment(**data)
@@ -252,6 +254,7 @@ class TestApp:
             "content": "New comment",
             "user_id": "user",
             "user_name": "Test User",
+            "date": "2013-04-09T00:00:00",
             "item_id": 1,
         }
         m_send_notification.assert_called_with("A comment has been created")
@@ -271,6 +274,7 @@ class TestApp:
                 "item_id": 1,
                 "user_id": "user",
                 "user_name": "Test User",
+                "date": "2013-04-09T00:00:00",
             },
             {
                 "id": 2,
@@ -278,5 +282,6 @@ class TestApp:
                 "item_id": 1,
                 "user_id": "user",
                 "user_name": "Test User",
+                "date": "2013-04-09T00:00:00",
             },
         ]

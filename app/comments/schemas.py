@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+import datetime
 
 
 class CommentBase(BaseModel):
@@ -14,6 +15,7 @@ class Comment(CommentBase):
     id: int
     user_id: str = Field(title="User id for the comment")
     user_name: str = Field(title="User name for the comment")
+    date: datetime.datetime = Field(title="Date for the comment")
 
     class Config:
         orm_mode = True

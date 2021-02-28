@@ -4,5 +4,5 @@ INSERT INTO items (id, name, description, parent_id, destination_id, is_containe
 INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (3, 'Test item 3', 'This is test item 3', 1, 1, FALSE);
 INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (4, 'Test item 4', 'This is test item 4', 3, 1, FALSE);
 INSERT INTO items (id, name, description, parent_id, destination_id, is_container) VALUES (5, 'Test item 5', 'This is test item 5', NULL, 1, FALSE);
-INSERT INTO comments (id, content, item_id, user_id, user_name) VALUES (1, 'Test comment 1', 1, 'localhost/testuser', 'Test User');
-INSERT INTO comments (id, content, item_id, user_id, user_name) VALUES (2, 'Test comment 2', 1, 'localhost/testuser', 'Test User');
+INSERT INTO comments (id, content, item_id, user_id, user_name, date) VALUES (1, 'Test comment 1', 1, 'localhost/testuser', 'Test User','2020-11-07 20:19:30.000000');
+INSERT INTO comments (id, content, item_id, user_id, user_name, date) VALUES (2, 'Test comment 2', 1, 'localhost/testuser', 'Test User', '2020-11-07 20:19:30.000000');
