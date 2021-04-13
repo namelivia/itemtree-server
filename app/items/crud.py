@@ -37,7 +37,7 @@ def create_item(db: Session, item: schemas.ItemCreate, x_pomerium_jwt_assertion)
 
 def update_item(db: Session, item_id: int, new_item_data: schemas.ItemUpdate):
     items = db.query(models.Item).filter(models.Item.id == item_id)
-    items.update(new_item_data, synchronize_session=False)
+    items.update(new_item_data.dict(), synchronize_session=False)
     db.commit()
     item = items.first()
     logger.info("Item updated")
