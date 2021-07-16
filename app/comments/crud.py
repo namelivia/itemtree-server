@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 import logging
 from . import models, schemas
-from app.notifications.notifications import Notifications
+
+# from app.notifications.notifications import Notifications
 from app.user_info.user_info import UserInfo
 import datetime
 
@@ -32,7 +33,9 @@ def create_comment(
     db.refresh(db_comment)
     logger.info("New comment created")
     try:
-        Notifications.send(f"A comment has been created")
+        # Temporary disable notifications for comments
+        # Notifications.send(f"A comment has been created")
+        pass
     except Exception as err:
         logger.error(f"Notification could not be sent: {str(err)}")
     return db_comment
