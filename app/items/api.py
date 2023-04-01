@@ -23,7 +23,7 @@ def _get_item(db: Session, item_id: int):
 
 @router.get("/{item_id}", response_model=schemas.Item)
 def get_item(
-    item_id: int = Path(None, title="The ID of the item to get", ge=1),
+    item_id: int = Path(title="The ID of the item to get", ge=1),
     db: Session = Depends(get_db),
 ):
     return _get_item(db, item_id)
@@ -42,14 +42,14 @@ def create_item(
 def update_item(
     new_item_data: schemas.ItemUpdate,
     db: Session = Depends(get_db),
-    item_id: int = Path(None, title="The ID for the item to update", ge=1),
+    item_id: int = Path(title="The ID for the item to update", ge=1),
 ):
     return crud.update_item(db, item_id, new_item_data)
 
 
 @router.delete("/{item_id}")
 async def delete_item(
-    item_id: int = Path(None, title="The ID of the item to remove", ge=1),
+    item_id: int = Path(title="The ID of the item to remove", ge=1),
     db: Session = Depends(get_db),
 ):
     crud.delete_item(db, _get_item(db, item_id))
