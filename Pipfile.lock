@@ -641,7 +641,7 @@
         "pyjwt": {
             "editable": true,
             "git": "https://github.com/jpadilla/pyjwt.git",
-            "ref": "72ad55f6d7041ae698dc0790a690804118be50fc"
+            "ref": "ca99a72c1e6c98c2a7c4db97155a3a05428794de"
         },
         "pytest": {
             "hashes": [
@@ -785,11 +785,11 @@
         },
         "uvicorn": {
             "hashes": [
-                "sha256:1d55d46b83ee4ce82b4e82f621f2050adb3eb7b5481c13f9af1744951cae2f1f",
-                "sha256:da9b0c8443b2d7ee9db00a345f1eee6db7317432c9d4400f5049cc8d358383be"
+                "sha256:1f9be6558f01239d4fdf22ef8126c39cb1ad0addf76c40e760549d2c2f43ab53",
+                "sha256:4d3cc12d7727ba72b64d12d3cc7743124074c0a69f7b201512fc50c3e3f1569a"
             ],
             "index": "pypi",
-            "version": "==0.23.1"
+            "version": "==0.23.2"
         },
         "uvloop": {
             "hashes": [
@@ -980,6 +980,9 @@
             "version": "==2.1.13"
         },
         "coverage": {
+            "extras": [
+                "toml"
+            ],
             "hashes": [
                 "sha256:06a9a2be0b5b576c3f18f1a241f0473575c4a26021b52b2a85263a00f034d51f",
                 "sha256:06fb182e69f33f6cd1d39a6c597294cff3143554b64b9825d1dc69d18cc2fff2",
