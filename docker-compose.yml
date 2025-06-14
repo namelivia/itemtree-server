@@ -25,7 +25,7 @@ services:
       IMAGES_SERVICE_ENDPOINT: "http://images-service:80"
       USER_INFO_SERVICE_ENDPOINT: "http://user-info-service:80"
     command: [
-        "pipenv",
+        "poetry",
         "run",
         "uvicorn",
         "app.main:app",
